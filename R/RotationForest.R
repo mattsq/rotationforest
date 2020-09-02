@@ -7,7 +7,7 @@
 #'
 #' @param xdf a data frame of X dependent vectors
 #' @param ydf a data frame of Y response values
-#' @param npredictor the number of predictor variables that are to be used in each rotation
+#' @param npredictor the number of predictor variables that are to be used in each rotation (must be less than the number of dependent vectors)
 #' @param ntree the number of trees that are to be used to train the ensemble
 #' @param verbose a logical, set true for classification output to be printed
 #' @param ... extra variables to be passed on to the rpart function
@@ -29,6 +29,7 @@
 #' fit <- rotationForest(data.train[,-1], data.train[,1], 2, 10)
 #'
 rotationForest <- function(xdf, ydf, npredictor, ntree = 10, verbose = F, ...) {
+  if(npredictor > ncol(xdf)) simpleError("The number of predictors (npredictor) cannot be greater than the number of dependent variables.")
   rotationForestObject <- list()
   class(rotationForestObject) <- "rotationForest"
   fits <- list()

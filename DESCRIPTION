@@ -10,3 +10,4 @@ License: MIT + file LICENSE
 Depends: R (>= 3.0.0)
 Imports:
   rpart
+RoxygenNote: 7.1.1
